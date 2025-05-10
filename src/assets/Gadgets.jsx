@@ -14,23 +14,15 @@ const Hero = () => {
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
 
-  
+  // Handle Add to Cart functionality
   const handleAddToCart = (product) => {
-    setBuyPhone(product);
-
+    setBuyPhone(product); // Set the selected product to CartContext
   };
-  const handlealert = () => {
-    alert('product added in the cart')
-  }
-  const handleall = (product) => {
-    handleAddToCart(product)
-    handlealert()
-  }
 
   return (
-    <>
-  
-    <h1>Buy Phone</h1>
+  <>
+  <hr />
+  <h1>Buy Laptop</h1>
     <div style={{ padding: '20px' }}>
       <Carousel responsive={responsive} infinite autoPlay>
         {products.map((product) => (
@@ -62,7 +54,7 @@ const Hero = () => {
             <br />
             <button
               className="cart-btn"
-              onClick={() => handleall(product)} // Add to cart
+              onClick={() => handleAddToCart(product)} // Add to cart
             >
               Add to cart
             </button>

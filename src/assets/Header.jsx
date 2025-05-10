@@ -68,6 +68,7 @@ function AutoCloseExample() {
         </Dropdown.Menu>
         
       </Dropdown>
+      <NavLink to="buylaptop">
       <Dropdown className="d-inline mx-2" autoClose={true}>
         <Dropdown.Toggle className='dropdown' id="dropdown-autoclose-false">
           Buy Laptop
@@ -78,8 +79,11 @@ function AutoCloseExample() {
           <Dropdown.Item href="#">Menu Item</Dropdown.Item>
           <Dropdown.Item href="#">Menu Item</Dropdown.Item>
         </Dropdown.Menu>
+        </Dropdown>
+      </NavLink>
+     
         
-      </Dropdown>
+    
       <Dropdown className="d-inline mx-2" autoClose={true}>
         <Dropdown.Toggle className='dropdown' id="dropdown-autoclose-false">
           Cashify store

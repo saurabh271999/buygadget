@@ -2,15 +2,16 @@ import React, { useContext, useState } from 'react';
 import { CartContext } from './Cartcontext';
 
 const Cart = () => {
-  const { buyPhone } = useContext(CartContext);
-  const [counter, setCounter] = useState(1); // default quantity is 1
+  const { buyPhone } = useContext(CartContext); // Access the product stored in CartContext
+  const [counter, setCounter] = useState(1);
 
+  // Handle counter for quantity
   const handleCounter = () => {
     setCounter(prev => prev + 1);
   };
 
   const handleCounterminus = () => {
-    setCounter(prev => (prev > 1 ? prev - 1 : 1));
+    setCounter(prev => (prev > 1 ? prev - 1 : 1)); // Prevent quantity going below 1
   };
 
   if (!buyPhone) {
@@ -23,52 +24,38 @@ const Cart = () => {
   }
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      padding: '20px'
-    }}>
-      <div style={{
-        border: '2px solid black',
-        borderRadius: '10px',
-        padding: '15px',
-        width: '300px',
-        textAlign: 'center'
-      }}>
-        <img src={buyPhone.image} alt={buyPhone.title} style={{ width: '100%',
-          height:'200px', borderRadius: '8px' }} />
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+      <div
+        style={{
+          border: '2px solid black',
+          borderRadius: '10px',
+          padding: '15px',
+          width: '300px',
+          textAlign: 'center',
+        }}
+      >
+        <img
+          src={buyPhone.image}
+          alt={buyPhone.title}
+          style={{
+            width: '100%',
+            height: '200px',
+            objectFit: 'cover',
+            borderRadius: '8px',
+          }}
+        />
         <h3>{buyPhone.title}</h3>
         <p>{buyPhone.description}</p>
-        <strong>Price: ₹ {buyPhone.price}</strong>
+        <strong>₹ {buyPhone.price}</strong>
         <p style={{ marginTop: '10px' }}>Quantity: {counter}</p>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <button onClick={handleCounterminus}>➖</button>
           <button onClick={handleCounter}>➕</button>
         </div>
         <p style={{ marginTop: '10px' }}>
-          Total: ₹ {buyPhone.price * counter}
+          Total: ₹ {buyPhone.price * counter} {/* Total calculation */}
         </p>
-      </div>
-      <div style={{
-        border: '2px solid black',
-        borderRadius: '10px',
-        padding: '15px',
-        width: '300px',
-        textAlign: 'center'
-      }}>
-        <img src={buyPhone.image} alt={buyPhone.title} style={{ width: '100%',
-          height:'200px', borderRadius: '8px' }} />
-        <h3>{buyPhone.title}</h3>
-        <p>{buyPhone.description}</p>
-        <strong>Price: ₹ {buyPhone.price}</strong>
-        <p style={{ marginTop: '10px' }}>Quantity: {counter}</p>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <button onClick={handleCounterminus}>➖</button>
-          <button onClick={handleCounter}>➕</button>
-        </div>
-        <p style={{ marginTop: '10px' }}>
-          Total: ₹ {buyPhone.price * counter}
-        </p>
+        <button>Checkout</button>
       </div>
     </div>
   );
