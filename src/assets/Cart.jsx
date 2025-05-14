@@ -29,9 +29,9 @@ const Cart = () => {
     key: 'rzp_live_0UuvnA3YQefRKT', 
     amount: buyPhone.price * counter * 100, 
     currency: 'INR',
-    name: 'My E-commerce Store',
+    name: 'Buy Easy Phone',
     description: buyPhone.title,
-    image: 'https://your-logo-url.com', 
+    image: 'https://png.pngtree.com/png-clipart/20200727/original/pngtree-e-commerce-logo-template-png-image_5066821.jpg', 
     handler: function (response) {
       alert('✅ Payment Successful! Payment ID: ' + response.razorpay_payment_id);
     },
