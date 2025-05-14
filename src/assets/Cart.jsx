@@ -1,18 +1,60 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from './Cartcontext';
-
+import { useEffect } from 'react';
 const Cart = () => {
   const { buyPhone } = useContext(CartContext); // Access the product stored in CartContext
   const [counter, setCounter] = useState(1);
 
+  
   // Handle counter for quantity
   const handleCounter = () => {
     setCounter(prev => prev + 1);
   };
 
   const handleCounterminus = () => {
-    setCounter(prev => (prev > 1 ? prev - 1 : 1)); // Prevent quantity going below 1
+    setCounter(prev => (prev > 1 ? prev - 1 : 1)); 
   };
+
+
+
+  useEffect(() => {
+  const script = document.createElement('script');
+  script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+  script.async = true;
+  document.body.appendChild(script);
+}, []);
+
+  const handlePayment = () => {
+  const options = {
+    key: 'rzp_live_0UuvnA3YQefRKT', 
+    amount: buyPhone.price * counter * 100, 
+    currency: 'INR',
+    name: 'My E-commerce Store',
+    description: buyPhone.title,
+    image: 'https://your-logo-url.com', 
+    handler: function (response) {
+      alert('✅ Payment Successful! Payment ID: ' + response.razorpay_payment_id);
+    },
+    prefill: {
+      name: 'Saurabh',
+      email: 'saurabh@example.com',
+      contact: '9999999999',
+    },
+    notes: {
+      address: 'Ghaziabad, India',
+    },
+    theme: {
+      color: '#3399cc',
+    },
+  };
+
+  const rzp = new window.Razorpay(options);
+  rzp.open();
+};
+
+
+
+
 
   if (!buyPhone) {
     return (
@@ -55,7 +97,8 @@ const Cart = () => {
         <p style={{ marginTop: '10px' }}>
           Total: ₹ {buyPhone.price * counter} {/* Total calculation */}
         </p>
-        <button>Checkout</button>
+        <button onClick={handlePayment}>Checkout</button>
+
       </div>
     </div>
   );
